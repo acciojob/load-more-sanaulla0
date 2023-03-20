@@ -1,6 +1,7 @@
 
-import React from "react";
+import React ,{useState} from "react";
 import './../styles/App.css';
+
 
 const items = [
   "Item 1",
@@ -32,13 +33,35 @@ const items = [
   "Item 27",
   "Item 28",
   "Item 29",
-  "Item 30"
+  "Item 30",
 ];
 
 const App = () => {
+  const [data , setData] = useState([]);
+
+const handle = ()=>{
+  setData((prevData) => [...prevData, ...items.slice(prevData.length, prevData.length + 10)]);
+}
+
   return (
     <div>
         {/* Do not remove the main div */}
+        <button type="submit" onClick={handle}>Load More</button>
+        <ul>
+           
+            {data.map((item ,index)=>{
+              return(
+                <li key={index}>
+
+                 {item}
+               </li>
+
+              )
+                
+            })}
+           
+        </ul>
+         
     </div>
   )
 }
